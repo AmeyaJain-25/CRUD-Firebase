@@ -13,9 +13,10 @@ const Header = () => {
             </div>
             <div>
                 {context.user ? (
-                    <Link to="/">
-                        <Button style={{margin: "5px 10px"}}>Logout</Button>
-                    </Link>
+                        <Button 
+                            style={{margin: "5px 10px"}}
+                            onClick={() => context.setUser(null)}
+                        >Logout</Button>
                     ) : (
                     <>
                         <Link to="/signin">
