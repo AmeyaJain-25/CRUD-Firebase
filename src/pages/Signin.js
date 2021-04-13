@@ -13,11 +13,19 @@ const Signin = () => {
         firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then(result => {
-            console.log(result);
-            context.setUser({
-                email: result.user.email,
-                uid: result.user.uid,
+        .then(async (result) => {
+            const userRefData = await firebase.database().ref('users/');
+            userRefData.on('value', snapshot => {
+                const userArr = Object.entries(snapshot.val());
+                const user = userArr.filter(u=>{
+                    return u[1].uid === result.user.uid;
+                })
+                context.setUser({
+                    uuid: user[0][0],
+                    name: user[0][1].name,
+                    email: user[0][1].email,
+                    uid: user[0][1].uid,
+                })
             })
         })
         .catch(error=> {

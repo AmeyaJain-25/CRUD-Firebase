@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 //Firebase
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/database";
 
 import { useState } from 'react';
 import { UserContext } from './context/UserContext';
