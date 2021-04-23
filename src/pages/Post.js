@@ -25,6 +25,16 @@ const Post = () => {
                 title,
                 body
             })
+            firebase.firestore().collection('posts').doc(uuidv4()).set({
+                postedBy: {
+                    uuid: context.user.uuid,
+                    name: context.user.name,
+                    email: context.user.email,
+                    uid: context.user.uid,
+                },
+                title,
+                body
+            })
             } catch (error) {
                 console.log(error);
             }

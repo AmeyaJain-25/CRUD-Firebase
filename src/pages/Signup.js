@@ -33,6 +33,11 @@ const Signup = () => {
                 name,
                 email
             })
+            firebase.firestore().collection('users').doc(uuidv4()).set({
+                uid: result.user.uid,
+                name,
+                email
+            })
             } catch (error) {
                 console.log(error);
             }
